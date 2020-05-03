@@ -146,22 +146,30 @@ let writeToTelgramBot str =
     let token = Environment.GetEnvironmentVariable("telegrambot_token")
     let adminChatId = Int64.Parse(Environment.GetEnvironmentVariable("adminchatid"))
     let client = TelegramBotClient(token)
+    client.StartReceiving()
     client.SendTextMessageAsync(ChatId(adminChatId), str).GetAwaiter().GetResult() |> ignore
     
     ()
 
 let callbackHandler (model:LiqPayCallbackModel) =
-    let data = getDataFromModel model
-    let answer = if verifySignature model then
-                    (sprintf "Thank you for the payment of %i bucks, dear %s!" data.Amount data.SenderPhone)
-                 else "Sorry payment is bad"
-                 
-    writeToTelgramBot (JsonConvert.SerializeObject(data))
-    writeToTelgramBot answer
+    try
+        let data = getDataFromModel model
+        let answer = if verifySignature model then
+                     (sprintf "Thank you for the payment of %i bucks, dear %s!" data.Amount data.SenderPhone)
+                     else "Sorry payment is bad"
+                    
+        writeToTelgramBot (JsonConvert.SerializeObject(data))
+        writeToTelgramBot answer
     
-    let model     = { Text = answer }
-    let view      = Views.index model
-    htmlView view
+        let model     = { Text = answer }
+        let view      = Views.index model
+        htmlView view                        
+    with
+    | e ->
+        writeToTelgramBot (e.ToString())
+        let model     = { Text = "error" }
+        let view      = Views.index model
+        htmlView view                            
     
 let indexHandler (name : string) =
     let greetings = sprintf "Hello %s, from Giraffe!" name
@@ -177,7 +185,7 @@ let webApp =
                 routef "/hello/%s" indexHandler
             ]
         POST >=> choose [
-            route "/callback" >=> bindModel<LiqPayCallbackModel> None callbackHandler
+            routex "/callback.*" >=> bindModel<LiqPayCallbackModel> None callbackHandler
         ]
         setStatusCode 404 >=> text "Not Found" ]
 
