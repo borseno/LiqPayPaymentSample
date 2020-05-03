@@ -144,7 +144,7 @@ let verifySignature (callbackModel:LiqPayCallbackModel) =
 
 let writeToTelgramBot str =
     let token = Environment.GetEnvironmentVariable("telegrambot_token")
-    let adminChatId = Environment.GetEnvironmentVariable("telegrambot_token")
+    let adminChatId = Environment.GetEnvironmentVariable("adminchatid")
     let client = TelegramBotClient(token)
     client.SendTextMessageAsync(ChatId(55), str).GetAwaiter().GetResult() |> ignore
     
