@@ -68,7 +68,7 @@ let getSignature data =
         |> Convert.ToBase64String
     
 let getFormValues () =
-    let currentURL = "https://localhost:5001/callback"
+    let currentURL = "https://paymentsite.herokuapp.com/callback"
     let publicKey = "sandbox_i48609436030"
     let json = {
         PublicKey = publicKey
