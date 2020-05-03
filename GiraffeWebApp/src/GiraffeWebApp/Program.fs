@@ -13,6 +13,8 @@ open Microsoft.Extensions.Logging
 open Microsoft.Extensions.DependencyInjection
 open Giraffe
 open Microsoft.AspNetCore.Http
+open Telegram.Bot
+open Telegram.Bot.Types
 
 // ---------------------------------
 // Models
@@ -66,7 +68,7 @@ let getSignature data =
         |> Convert.ToBase64String
     
 let getFormValues () =
-    let currentURL = "https://paymentsite.herokuapp.com/callback"
+    let currentURL = "https://localhost:5001/callback"
     let publicKey = "sandbox_i48609436030"
     let json = {
         PublicKey = publicKey
@@ -140,11 +142,23 @@ let verifySignature (callbackModel:LiqPayCallbackModel) =
     
     ourSignature = givenSignature
 
+let writeToTelgramBot str =
+    let token = Environment.GetEnvironmentVariable("telegrambot_token")
+    let adminChatId = Environment.GetEnvironmentVariable("telegrambot_token")
+    let client = TelegramBotClient(token)
+    client.SendTextMessageAsync(ChatId(55), str).GetAwaiter().GetResult() |> ignore
+    
+    ()
+
 let callbackHandler (model:LiqPayCallbackModel) =
     let data = getDataFromModel model
     let answer = if verifySignature model then
                     (sprintf "Thank you for the payment of %i bucks, dear %s!" data.Amount data.SenderPhone)
-                 else "Sorry payment is bad" 
+                 else "Sorry payment is bad"
+                 
+    writeToTelgramBot (JsonConvert.SerializeObject(data))
+    writeToTelgramBot answer
+    
     let model     = { Text = answer }
     let view      = Views.index model
     htmlView view
