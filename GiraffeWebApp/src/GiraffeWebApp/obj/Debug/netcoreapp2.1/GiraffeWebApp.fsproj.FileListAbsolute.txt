@@ -11,3 +11,16 @@ D:\Git\billing\GiraffeWebApp\GiraffeWebApp\src\GiraffeWebApp\obj\Debug\netcoreap
 D:\Git\billing\GiraffeWebApp\GiraffeWebApp\src\GiraffeWebApp\obj\Debug\netcoreapp2.1\GiraffeWebApp.dll
 D:\Git\billing\GiraffeWebApp\GiraffeWebApp\src\GiraffeWebApp\obj\Debug\netcoreapp2.1\GiraffeWebApp.pdb
 D:\Git\billing\GiraffeWebApp\GiraffeWebApp\src\GiraffeWebApp\obj\Debug\netcoreapp2.1\GiraffeWebApp.genruntimeconfig.cache
+D:\Git\LiqPayPaymentSample\GiraffeWebApp\src\GiraffeWebApp\bin\Debug\netcoreapp2.1\WebRoot\main.css
+D:\Git\LiqPayPaymentSample\GiraffeWebApp\src\GiraffeWebApp\bin\Debug\netcoreapp2.1\web.config
+D:\Git\LiqPayPaymentSample\GiraffeWebApp\src\GiraffeWebApp\bin\Debug\netcoreapp2.1\GiraffeWebApp.deps.json
+D:\Git\LiqPayPaymentSample\GiraffeWebApp\src\GiraffeWebApp\bin\Debug\netcoreapp2.1\GiraffeWebApp.runtimeconfig.json
+D:\Git\LiqPayPaymentSample\GiraffeWebApp\src\GiraffeWebApp\bin\Debug\netcoreapp2.1\GiraffeWebApp.runtimeconfig.dev.json
+D:\Git\LiqPayPaymentSample\GiraffeWebApp\src\GiraffeWebApp\bin\Debug\netcoreapp2.1\GiraffeWebApp.dll
+D:\Git\LiqPayPaymentSample\GiraffeWebApp\src\GiraffeWebApp\bin\Debug\netcoreapp2.1\GiraffeWebApp.pdb
+D:\Git\LiqPayPaymentSample\GiraffeWebApp\src\GiraffeWebApp\obj\Debug\netcoreapp2.1\GiraffeWebApp.fsprojAssemblyReference.cache
+D:\Git\LiqPayPaymentSample\GiraffeWebApp\src\GiraffeWebApp\obj\Debug\netcoreapp2.1\GiraffeWebApp.AssemblyInfoInputs.cache
+D:\Git\LiqPayPaymentSample\GiraffeWebApp\src\GiraffeWebApp\obj\Debug\netcoreapp2.1\GiraffeWebApp.AssemblyInfo.fs
+D:\Git\LiqPayPaymentSample\GiraffeWebApp\src\GiraffeWebApp\obj\Debug\netcoreapp2.1\GiraffeWebApp.dll
+D:\Git\LiqPayPaymentSample\GiraffeWebApp\src\GiraffeWebApp\obj\Debug\netcoreapp2.1\GiraffeWebApp.pdb
+D:\Git\LiqPayPaymentSample\GiraffeWebApp\src\GiraffeWebApp\obj\Debug\netcoreapp2.1\GiraffeWebApp.genruntimeconfig.cache
