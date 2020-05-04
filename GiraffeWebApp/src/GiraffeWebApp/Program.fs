@@ -130,15 +130,8 @@ let getDataFromModel model =
         |> JsonConvert.DeserializeObject<LiqPayCallbackData>
 
 let verifySignature (callbackModel:LiqPayCallbackModel) =
-    let data = getDataFromModel callbackModel
-        
     let givenSignature = callbackModel.Signature
-    let ourSignature =
-        data
-        |> JsonConvert.SerializeObject
-        |> Encoding.UTF8.GetBytes
-        |> Convert.ToBase64String
-        |> getSignature
+    let ourSignature = getSignature callbackModel.Data
     
     ourSignature = givenSignature
 
@@ -155,10 +148,11 @@ let callbackHandler (model:LiqPayCallbackModel) =
     try
         let data = getDataFromModel model
         let answer = if verifySignature model then
-                     (sprintf "Thank you for the payment of %i bucks, dear %s!" data.Amount data.SenderPhone)
+                        (sprintf "Thank you for the payment of %i bucks, dear %s!" data.Amount data.SenderPhone)
                      else "Sorry payment is bad"
                     
         writeToTelgramBot (JsonConvert.SerializeObject(data))
+        writeToTelgramBot model.Signature
         writeToTelgramBot answer
     
         let model     = { Text = answer }
